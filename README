@@ -27,8 +27,7 @@ Usage example: Ad-hoc XOR Batches
 
 These functions were created for academic usage and prototyping. But there is
 some practical usage here too. In this example, you are doing a forensic
-statistical analysis of an intercepted one time pad. As part of your investigation,
-you need to XOR one 1090 character binary string against 800 data set 
+statistical analysis of an intercepted one time pad. As part of your investigation, you need to XOR one 1090 character binary string against 800 data set 
 strings in your library directory.
 
 # Validate your test file. These should both return 1090.
