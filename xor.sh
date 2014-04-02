@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 # Bash is not meant for this kind of thing.
 # Use python instead, for the big number
 # crunching. But for smaller numbers, or if
