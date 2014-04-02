@@ -1,0 +1,33 @@
+# Crypto Core - Keegan Bowen 2014
+dec2bin () {
+    num="$1"
+    bin=""
+    padding=""
+    base2=(0 1)
+    while [ "$num" -gt 0 ]; do
+        bin=${base2[$(($num % 2))]}$bin
+        num=$(($num / 2))
+    done
+    if [ $((8 - (${#bin} % 8))) -ne 8 ]; then
+        printf -v padding '%*s' $((8 - (${#bin} % 8))) ''
+        padding=${padding// /0}
+    fi
+    echo $padding$bin
+}
+
+strip () {
+tr -d '\040\011\012\015'
+}
+
+bin2dec () {
+    echo $((2#$1))
+}
+
+msglgth () {
+SETMSGLGTH=$(cat ~/seeds/a.xor | wc -c)
+}
+
+exor () {
+bash ~/Scripts/xor.sh
+}
+
