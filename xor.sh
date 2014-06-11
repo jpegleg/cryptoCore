@@ -18,8 +18,8 @@ tr -d '\040\011\012\015'
 # Place them in the ~/seeds directory.
 # Your seed files must be named a.xor and b.xor.
 
-msg=$(cat ~/seeds/a.xor | strip)
-key=$(cat ~/seeds/b.xor | strip)
+msg=$(cat ~/seeds/a.xor | stripper)
+key=$(cat ~/seeds/b.xor | stripper)
 
 msglgth () {
 SETMSGLGTH=$(cat a.xor | wc -c)
