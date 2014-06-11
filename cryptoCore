@@ -15,7 +15,7 @@ dec2bin () {
     echo $padding$bin
 }
 
-strip () {
+stripper () {
 tr -d '\040\011\012\015'
 }
 
