@@ -42,9 +42,7 @@ done
 
 Then run your XOR against each data input and store the results.
 
-for data in $(ls library/); do
-    cat library/"$data" | stripper > ~/seeds/b.xor
+or data in $(ls library/); 
+    do cat library/"$data" | stripper > ~/seeds/b.xor 
     exor > ~/seeds/result"$data".out
 done
-
-
