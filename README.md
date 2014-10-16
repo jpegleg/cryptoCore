@@ -42,6 +42,7 @@ The stripper function is used to sanitize data, just a wrapper for the tr comman
 Here we use stripper to validate your test file. These should both return 35.
 
 cat ~/seeds/a.xor | wc -c
+
 cat ~/seeds/a.xor | stripper | wc -c
 
 Validate the test library. These should also return 35.
