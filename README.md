@@ -49,8 +49,8 @@ cat ~/seeds/a.xor | stripper | wc -c
 Validate the test library. These should also return 35.
 
 for data in $(ls seeds/*); do
-     echo "$data"
-     cat "$data" | wc -c
-     echo "$data stripped"
-     cat "$data" | stripper | wc -c
+     echo "$data";
+     cat "$data" | wc -c;
+     echo "$data stripped";
+     cat "$data" | stripper | wc -c;
 done
