@@ -46,11 +46,8 @@ cat ~/seeds/a.xor | wc -c
 
 cat ~/seeds/a.xor | stripper | wc -c
 
-Validate the test library. These should also return 35.
+Validate the whole test library:
 
-for data in $(ls seeds/*); do
-     echo "$data";
-     cat "$data" | wc -c;
-     echo "$data stripped";
-     cat "$data" | stripper | wc -c;
-done
+libvalidate
+
+
