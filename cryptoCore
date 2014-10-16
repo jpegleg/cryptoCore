@@ -31,3 +31,9 @@ exor () {
 bash ~/Scripts/xor.sh
 }
 
+otpbatch () {
+for datasets in $(ls ~/seeds/*); do 
+    cat $datasets | stripper > ~/seeds/b.xor; 
+    exor > "$datasets".output; 
+done 2> /dev/null &
+}
