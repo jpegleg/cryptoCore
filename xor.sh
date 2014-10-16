@@ -38,4 +38,3 @@ b=$key
 exor
 
 echo $out
-
