@@ -36,7 +36,7 @@ And place only your library of 35 bit strings in ~/seeds/
 
 Then run an XOR batch against the one time pad, outputting the results to files:
 
-otpbatch
+nohup otpbatch
 
 The stripper function is used to sanitize data, just a wrapper for the tr command.
 Here we use stripper to validate your test file. These should both return 35.
