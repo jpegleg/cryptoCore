@@ -20,29 +20,35 @@ Usage example: Ad-hoc XOR Batches
 
 These functions were created for academic usage and prototyping. But there is
 some practical usage here too. In this example, you are doing a forensic
-statistical analysis of an intercepted one time pad. As part of your
-investigation, you need to XOR one 1090 character binary string 
-against 800 data set strings in your library directory.
+statistical analysis of an intercepted one time pad. 
 
+Here is one example:
 
-Validate your test file. These should both return 1090.
+You have a one time pad as follows:
+11001101111111001001001001000001001
+
+And you need to XOR it against your library of 35 bit strings.
+Send your pad to a.xor:
+
+echo -n 11001101111111001001001001000001001 > ~/seeds/a.xor
+
+And place only your library of 35 bit strings in ~/seeds/
+
+Then run an XOR batch against the one time pad, outputting the results to files:
+
+otpbatch
+
+The stripper function is used to sanitize data, just a wrapper for the tr command.
+Here we use stripper to validate your test file. These should both return 35.
 
 cat ~/seeds/a.xor | wc -c
 cat ~/seeds/a.xor | stripper | wc -c
 
-Validate the test library. These should also return 1090.
+Validate the test library. These should also return 35.
 
-for data in $(ls library/*); do
+for data in $(ls seeds/*); do
      echo "$data"
      cat "$data" | wc -c
      echo "$data stripped"
      cat "$data" | stripper | wc -c
-done
-
-
-Then run your XOR against each data input and store the results.
-
-or data in $(ls library/); 
-    do cat library/"$data" | stripper > ~/seeds/b.xor 
-    exor > ~/seeds/result"$data".out
 done
