@@ -1,4 +1,8 @@
 # Crypto Core - Keegan Bowen 2014
+# These functions are used for low level bitwise XOR batch operations
+# for ad-hoc academic cryptographic batches.
+
+# Convert common decimals to binary.
 dec2bin () {
     num="$1"
     bin=""
@@ -15,22 +19,28 @@ dec2bin () {
     echo $padding$bin
 }
 
+# Call tr program to remove whitespace of all kinds
+# to prepare for bitwise XOR.
 stripper () {
 tr -d '\040\011\012\015'
 }
 
+# Convert binary to decimal. This thing needs work.
 bin2dec () {
     echo $((2#$1))
 }
 
+# Return the seed length.
 msglgth () {
 SETMSGLGTH=$(cat ~/seeds/a.xor | wc -c)
 }
 
+# Bitwise XOR.
 exor () {
 bash ~/Scripts/xor.sh
 }
 
+# One-time-pad batch XOR.
 otpbatch () {
 for datasets in $(ls ~/seeds/*); do 
     cat $datasets | stripper > ~/seeds/b.xor; 
@@ -38,6 +48,7 @@ for datasets in $(ls ~/seeds/*); do
 done 2> /dev/null &
 }
 
+# Run a validation check on the seed files.
 libvalidate () {
 for data in $(ls ~/seeds/*); do
     echo "$data"; 
@@ -45,4 +56,11 @@ for data in $(ls ~/seeds/*); do
     echo "$data stripped"; 
     cat "$data" | stripper | wc -c; 
 done
+}
+
+# Generate a big library of binary.
+function libgen () { 
+    for x in {1..999999}; 
+        do dec2bin "$x" > "$x".xor ; 
+    done
 }
