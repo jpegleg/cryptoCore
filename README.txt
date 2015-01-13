@@ -64,3 +64,5 @@ echo -n "100110100111" > e.xor
 for ((i=0; i < 4; i++)); do
     reqbatch
 done
+
+The reqbatch function carries out the same operations as the otp batch function but has verbose output and doesn't background the process so it can be used within other loops without making a mess with mutiple otpbatches running at the same time.
