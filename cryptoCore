@@ -1,5 +1,5 @@
 # Crypto Core - Keegan Bowen 2014
-# These functions are used for low level bitwise XOR batch operations
+# These functions are used for bitwise XOR operations
 # for ad-hoc academic cryptographic batches.
 
 # Convert common decimals to binary.
