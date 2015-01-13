@@ -50,18 +50,18 @@ Validate the whole test library:
 
 libvalidate
 
-A recursive XOR batch can be done multiple ways with these functions, one example is a 1000 deep recusive batch
+A recursive XOR batch can be done multiple ways with these functions, one example is a 4 deep recusive batch
 against 010010101010 with 4 inputs and a built in slow down sleep as the inputs grow after each round:
 
 cd ~/seeds
 rm -f *
 echo -n "010010101010" > a.xor
 echo -n "111010010010" > b.xor
-echo -n "111011111010" > c.xor
-echo -n "111011111010" > d.xor
+echo -n "111011111000" > c.xor
+echo -n "000011111010" > d.xor
 echo -n "100110100111" > e.xor
   
-for ((i=0; i < 1000; i++)); do
+for ((i=0; i < 4; i++)); do
   otpbatch
   sleep 1;
   sleep $i;
