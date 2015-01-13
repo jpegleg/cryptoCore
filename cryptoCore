@@ -69,9 +69,9 @@ for data in $(ls ~/seeds/*); do
 done
 }
 
-# Generate a big library of binary.
+# Generate a medium sized library of binary digits for playing with.
 function libgen () { 
-    for x in {1..999999}; 
+    for x in {1000..9999}; 
         do dec2bin "$x" > "$x".xor ; 
     done
 }
