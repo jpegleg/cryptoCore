@@ -62,7 +62,5 @@ echo -n "000011111010" > d.xor
 echo -n "100110100111" > e.xor
   
 for ((i=0; i < 4; i++)); do
-  otpbatch
-  sleep 1;
-  sleep $i;
+    reqbatch
 done
