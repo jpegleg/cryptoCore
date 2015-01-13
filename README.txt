@@ -55,23 +55,14 @@ A recursive XOR batch can be done multiple ways with these functions, one exampl
 against 010010101010 with 4 inputs and a built in slow down sleep as the inputs grow after each round:
 
 cd ~/seeds
-
 echo -n "010010101010" > a.xor
-
 echo -n "111010010010" > b.xor
-
 echo -n "111011111010" > c.xor
-
 echo -n "111011111010" > d.xor
-
 echo -n "100110100111" > e.xor
-
+  
 for ((i=0; i < 1000; i++)); do
-
-    otpbatch
-
-    sleep 1;
-
-    sleep $i;
-
+  otpbatch
+  sleep 1;
+  sleep $i;
 done
