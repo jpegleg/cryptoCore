@@ -51,7 +51,6 @@ Validate the whole test library:
 libvalidate
 
 A recursive XOR batch can be done multiple ways with these functions, one example is a 1000 deep recusive batch
-
 against 010010101010 with 4 inputs and a built in slow down sleep as the inputs grow after each round:
 
 cd ~/seeds
