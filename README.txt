@@ -50,8 +50,16 @@ Validate the whole test library:
 
 libvalidate
 
+To just generate a dataset and get playing, you can try the following:
+cd ~/seeds
+rm *
+libgen
+cp 1000.xor a.xor
+touch b.xor
+reqbatch
+
 A recursive XOR batch can be done multiple ways with these functions, one example is a 4 deep recusive batch
-against 010010101010 with 4 inputs and a built in slow down sleep as the inputs grow after each round:
+against 010010101010 with 4 inputs:
 
 cd ~/seeds
 rm -f *
