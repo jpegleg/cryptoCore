@@ -8,7 +8,7 @@ bash ./setup.sh
 
 Important Note:
 Both your msg and your key seed files must
-be binary and of the same length.
+contain binary strings and of the same length.
 Place them in the ~/seeds directory.
 
 The files need to be named a.xor and b.xor.
