@@ -3,7 +3,8 @@
 # for ad-hoc academic cryptographic batches.
 
 # Convert common decimals to binary.
-dec2bin () {
+# The int2bin function can only handle 20 character inputs at a time.
+int2bin () {
     num="$1"
     bin=""
     padding=""
@@ -72,6 +73,6 @@ done
 # Generate a medium sized library of binary digits for playing with.
 function libgen () { 
     for x in {1000..9999}; 
-        do dec2bin "$x" > "$x".xor ; 
+        do int2bin "$x" > "$x".xor ; 
     done
 }
