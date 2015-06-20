@@ -41,6 +41,11 @@ exor () {
 bash ~/Scripts/xor.sh
 }
 
+repeat () {
+  for x in {1.."$1"}; do
+    "$2"
+  done
+}
 # One-time-pad batch XOR.
 otpbatch () {
 for datasets in $(ls ~/seeds/*); do 
