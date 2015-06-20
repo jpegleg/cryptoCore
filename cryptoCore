@@ -40,11 +40,14 @@ SETMSGLGTH=$(cat ~/seeds/a.xor | wc -c)
 exor () {
 bash ~/Scripts/xor.sh
 }
-
-repeat () {
-  for x in {1.."$1"}; do
-    "$2"
-  done
+# Repeat n times command.
+function repeat()   
+{
+    local i max
+    max=$1; shift;
+    for ((i=1; i <= max ; i++)); do  # --> C-like syntax
+        eval "$@";
+    done
 }
 # One-time-pad batch XOR.
 otpbatch () {
