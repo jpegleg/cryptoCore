@@ -1,4 +1,4 @@
-# Crypto Core - Keegan Bowen 2014
+# Crypto Core - Keegan Bowen
 # These functions are used for bitwise XOR operations
 # for ad-hoc academic cryptographic batches.
 
@@ -82,36 +82,4 @@ function libgen () {
     for x in {1000..9999}; 
         do int2bin "$x" > "$x".xor ; 
     done
-}
-
-######### Python extra tools section below.
-
-function byteconv () {
-python -c "import pprint;pprint.pprint(zip(('Byte', 'KByte', 'MByte', 'GByte', 'TByte'), (1 << 10*i for i in xrange(5))))"
-}
-
-function csv2json () {
-python -c "import csv,json;print json.dumps(list(csv.reader(open('csv_file.csv'))))"
-}
-
-function dhex () {
-export HEXIN=$1 ; python -c "print ''.join(chr(int(''.join(i), 16)) for i in zip(*[iter('$HEXIN')]*2))"; 
-}
-
-# Now the python -m group, thanks PEP 338.
-
-function tokenize () {
-python -m "import sys; print sys.stdin.read().replace('\r','').split('\n\n',2)[1]";
-}
-
-function calendar () {
-python -m "import sys; print sys.stdin.read().replace('\r','').split('\n\n',2)[1]";
-}
-
-function cgi-it () {
-python -m "import sys; print sys.stdin.read().replace('\r','').split('\n\n',2)[1]";
-}
-
-function termweb () {
-python -m 'webbrowser'
 }
