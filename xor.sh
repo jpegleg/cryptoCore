@@ -35,6 +35,6 @@ done
 a=$msg
 b=$key
 
-exor
+exor 2> /dev/null
 
 echo $out
