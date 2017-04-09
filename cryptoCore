@@ -78,7 +78,7 @@ done
 }
 
 # Generate a medium sized library of binary digits for playing with.
-function libgen () { 
+libgen () { 
     for x in {1000..9999}; 
         do int2bin "$x" > "$x".xor ; 
     done
