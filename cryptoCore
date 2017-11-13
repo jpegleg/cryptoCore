@@ -27,6 +27,18 @@ alias checkpk12p'openssl pkcs12 -info -in'
 alias requestsign='openssl req -newkey rsa:2048 -sha256 -nodes -out servercert.csr -outform PEM'
 
 ############################
+#    PRACTICAL FUNCTIONS   #
+############################
+
+
+getpin () {
+echo "enter site:";
+read hashsite &&
+openssl s_client -servername "$hashsite" -connect "$hashsite":443 | openssl x509 -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64;
+}
+
+
+############################
 #    ADHOC BINARY EXOR     #
 ############################
 
