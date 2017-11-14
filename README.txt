@@ -1,4 +1,11 @@
-CRYPTO CORE .bashrc < by Keegan Bowen 
+cryptoCore is a dot file, or rather is concatenated with your .bashrc
+
+There is no cryptographic software in cryptoCore, but aliases and functions for
+other software in the Linux shell environment.
+
+Beyond the practical functions and aliases, there is also some on disk
+shell XOR functionality for teaching cryptography, academic 
+mathmatical explorations and proofs.
 
   Setup the additions to your bashrc file     
   and place the xor.sh script in ~/Scripts/   
