@@ -39,7 +39,7 @@ openssl s_client -servername "$hashsite" -connect "$hashsite":443 | openssl x509
 
 
 ############################
-#    ADHOC BINARY EXOR     #
+#    ADHOC BINARY XOR      #
 ############################
 
 # adhoc-crypto on the disk
@@ -87,7 +87,7 @@ bash ~/Scripts/xor.sh
 repeat () {
     local i max
     max=$1; shift;
-    for ((i=1; i <= max ; i++)); do  # --> C-like syntax
+    for ((i=1; i <= max ; i++)); do
         eval "$@";
     done
 }
