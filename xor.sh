@@ -22,7 +22,7 @@ msg=$(cat ~/seeds/a.xor | stripper)
 key=$(cat ~/seeds/b.xor | stripper)
 
 msglgth () {
-SETMSGLGTH=$(wc -c a.xor)
+SETMSGLGTH=$(wc -c ~/seeds/a.xor)
 }
 msglgth
 
