@@ -3,6 +3,8 @@ cryptoCore is a dot file, or rather is concatenated with your .bashrc
 There is no cryptographic software in cryptoCore, but aliases and functions for
 other software in the Linux shell environment.
 
+Also see https://github.com/jpegleg/metarc for my big .bashrc for more functions and aliases.
+
 Beyond the practical functions and aliases, there is also some on disk
 shell XOR functionality for teaching cryptography, academic 
 mathmatical explorations and proofs.
