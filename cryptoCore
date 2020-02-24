@@ -26,10 +26,109 @@ alias checkpk12p='openssl pkcs12 -info -in'
 # request a sign
 alias requestsign='openssl req -newkey rsa:2048 -sha256 -nodes -out servercert.csr -outform PEM'
 
+alias speedtest='openssl speed'
+
+alias ecckey='openssl ecparam -out ecc.key -name prime256v1 -genkey'
+alias rsa4096='openssl genrsa 4096'
+alias rsa2048='openssl genrsa 2048'
+alias newcsr='openssl req -out CSR.csr -new -key ' # pass the key name after the alias like: newcsr mykey.key
+alias checkcsr='openssl req -text -noout -verify -in' # pass the csr name like: checkcsr CSR.csr
+alias checkkey='openssl rsa -check -in' # pass the key name like: checkkey mykey.key
+alias checkcrt='openssl x509 -text -noout -in' # pass the cert name like: checkcrt mycert.crt
+alias gencacert='openssl req -new -x509 -key ./ca.key -out ca.crt'
+alias signcsr='openssl x509 -req -days 360 -in CSR.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out example.crt -sha256'
+alias signv3='openssl x509 -req -days 365 -in CSR.csr -extfile v3.ext -CA ca.crt -CAkey ca.key -CAcreateserial -out example.crt -sha256'
+alias gendh2048='openssl dhparam -out /etc/dhparam-2048 2048'
+alias gendh4096='openssl dhparam -out /etc/dhparam-4096 4096'
+alias rand64='openssl rand -base64 32' # redirect to a file
+
+
 ############################
 #    PRACTICAL FUNCTIONS   #
 ############################
 
+
+# ECC manual operations with openssl
+
+gensecp () {
+  openssl ecparam -name secp384r1 -genkey -noout -out secp384r1.pem
+  openssl ec -in secp384r1.pem -pubout -out secp384r1.pub
+}
+
+derive () {
+  openssl pkeyutl -derive -inkey secp384r1.pem -peerkey peerpub.pem -out secret.bin
+}
+
+ecenc () {
+  openssl enc -aes256 -base64 -k $(base64 secret.bin) -e -in $1 -out $2
+}
+
+ecdec () {
+  openssl enc -aes256 -base64 -k $(base64 secret.bin) -d -in $1 -out p$2
+}
+
+
+# RSA manual operations with openssl
+
+# osenc-setup 
+osenc-setup () {
+  openssl genrsa 4096 > secret-rsa.pem
+  openssl rsa -in secret-rsa.pem -pubout -outform pem > rsa.pub
+}
+
+# osenc-passgen
+osenc-enc-pass () {
+  openssl rand -base64 32 > key.bin
+  openssl rsautl -encrypt -inkey rsa.pub -pubin -in key.bin -out key.bin.enc
+}
+
+# osenc my-secretfile.txt mysecretfile.txt.asc
+osenc-file () { 
+  openssl enc -aes256 -base64 -salt -in $1 -out $2 -pass file:./key.bin
+}
+
+# osenc-decrypt mysecretfile.txt.asc my-secretfile.txt
+osenc-decrypt () {
+  openssl rsautl -decrypt -inkey secret-rsa.pem -in key.bin.enc -out key.bin 
+  openssl enc -d -aes256 -base64 -in $1 -out $2 -pass file:./key.bin 
+}
+
+
+# RSA signing and verify with openssl
+
+# first argument is plaintext file name/path, second is signed plaintext file name/path, third is RSA private key name/path
+rsasign () {
+  openssl rsautl -sign -in $1 -inkey $3 -out $2
+}
+
+# first argument is RSA public key, second argument is signed plaintext
+rsaverify () {
+  openssl rsautl -verify -in $2 -inkey $1 -pubin
+}
+
+
+# usage of this openssl/libressl thing with the functions above involves both sides(people and/or computer) to do it correctly
+# pgp (gpg) public key encryption is a much better solution
+# but some machines or situations can't use gpg but can use openssl
+
+# Example situation where Person B needs to share secrets with Person A.
+
+# Person A runs the functions contents like:
+# $ osenc-setup
+# $ cp rsa.pub Person-A.rsa.pub
+# Then Person A sends Person-A.rsa.pub to Person B. 
+
+# Person B runs the functions contents like:
+# $ cp Person-A.rsa.pub rsa.pub
+# $ osenc-passgen
+# $ osenc-file Person-B-secret-for-Person-A.txt Person-B-secret-for-Person-A.txt.asc
+# $ cp key.bin.enc Person-B-key.bin.enc
+# Then Person B sends the Person-B-secret-for-Person-A.txt.asc file along with Person-B-key.bin.enc
+
+# Then person A can decrypt Person B's key.bin.enc, and then decrypt Person-B-secret-for-Person-A.txt.asc
+# like so:
+# $ cp Person-B-key.bin.enc key.bin.enc 
+# $ osenc-decrypt
 
 getpin () {
 echo "enter site:";
